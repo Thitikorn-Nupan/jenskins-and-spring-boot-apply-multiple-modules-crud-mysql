@@ -62,7 +62,7 @@ pipeline {
 
             stage('Before build maven') {
                 steps {
-                    sh "mvn clean compile -DskipTests"
+                    sh "mvn clean deploy -DskipTests"
                 }
             }
 
