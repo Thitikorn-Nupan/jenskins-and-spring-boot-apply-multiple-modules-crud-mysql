@@ -71,10 +71,11 @@ pipeline {
                         echo 'Before build jar'
                         sh "ls -l"
                     }
+                    // Returns to the original working directory
+                    sh 'pwd'
                     // Builds the Spring Boot application using maven
                     sh "mvn clean install -DskipTests"
                     // Returns to the original working directory
-                    sh 'pwd'
                     // Go to target dir
                     dir('target') {
                         echo 'After build jar'
