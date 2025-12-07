@@ -62,7 +62,7 @@ pipeline {
 
             stage('Before build maven') {
                 steps {
-                    sh "mvn clean package -DskipTests"
+                   sh "mvn clean test"
                 }
             }
 
@@ -134,9 +134,6 @@ pipeline {
                     regression: Steps execute if the current run's status is worse than the previous run's status (e.g., successful to unstable, unstable to failure).
                     cleanup: This is a special condition within the global post section, primarily used for tasks like workspace cleanup, regardless of the build result.
                  */
-                 always {
-                     echo 'Pipeline deploy spring boot + docker finished.'
-                 }
                  success { // If some it is failure success won't work
                      echo 'Pipeline deploy spring boot + docker completed successfully.'
                  }
