@@ -6,37 +6,26 @@ pipeline {
 
     // stages as working Flows tell Pipeline what gonna do
     stages {
-            stage('Before initial check software installed') {
-                steps {
-                      sh 'java -version'
-                      sh 'mvn -version'
-                      sh 'git --version'
+                stage('Before initial check software installed') {
+                    steps {
+                          sh 'java -version'
+                          sh 'mvn -version'
+                          sh 'git --version'
+                    }
+                }
+
+                stage('Checkout git repo') {
+                    steps {
+                        // Checks out the source code from your Git repository. *** Note, by default it will pull repo to C:\ProgramData\Jenkins\.jenkins\workspace\...
+                        git branch: 'ttknp', url: 'https://github.com/Thitikorn-Nupan/jenskins-and-spring-boot-apply-multiple-modules-crud-mysql.git'
+                    }
+                }
+
+                stage('Build') {
+                    steps {
+                        // Builds the Spring Boot application using maven
+                        sh "mvn clean install -DskipTests"
+                    }
                 }
             }
-
-            stage('Checkout git repo') {
-                steps {
-                    // Checks out the source code from your Git repository. *** Note, by default it will pull repo to C:\ProgramData\Jenkins\.jenkins\workspace\...
-                    git branch: 'ttknp-spring-boot-3', url: 'https://github.com/Thitikorn-Nupan/jenskins-and-spring-boot-crud-array-list-collection.git'
-                }
-            }
-
-            stage('Build') {
-                steps {
-                    // Builds the Spring Boot application using maven
-                    sh "mvn clean install -DskipTests"
-                }
-            }
-
-            stage('Deploy') {
-                steps {
-                    // Deploys the built JAR file. This is a basic example for local deployment.
-                    // sh "java -jar target/basic-api-using-spring-boot-0.0.1-SNAPSHOT.jar"
-
-                    // When attempting to run a JAR file in the background within a Jenkins job, and it appears not to be working, the most common culprit is the Jenkins ProcessTree Killer.
-                    // Fix by Disable ProcessTreeKiller for specific processes:
-                    sh 'JENKINS_NODE_COOKIE=dontKillMe java -jar target/basic-api-using-spring-boot-3-0.0.1-SNAPSHOT.jar &' // ** Note, you have to kill process on own
-                }
-            }
-        }
     }
