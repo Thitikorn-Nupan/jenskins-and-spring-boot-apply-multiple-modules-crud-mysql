@@ -49,13 +49,25 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jdbc</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
         <!--
               **** importance
               import custom module/dependency
               if you do not you can only access the class but not dependency of child module !!!
               and don't forget import your jar to main project if you do not it can't see jar target !!!
          -->
-        <dependency>
+        <!--<dependency>
             <groupId>com.ttknp</groupId>
             <artifactId>jdbc-custom-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
@@ -77,7 +89,7 @@
             <groupId>com.ttknp</groupId>
             <artifactId>valiadation-custom-service</artifactId>
             <version>0.0.1-SNAPSHOT</version>
-        </dependency>
+        </dependency>-->
     </dependencies>
 
     <build>
@@ -107,32 +119,12 @@
                 </configuration>
             </plugin>
             <!-- -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-enforcer-plugin</artifactId>
-                <version>1.0</version>
-                <executions>
-                    <execution>
-                        <id>enforce-versions</id>
-                        <goals>
-                            <goal>enforce</goal>
-                        </goals>
-                        <configuration>
-                            <rules>
-                                <requireMavenVersion>
-                                    <version>3.5.8</version>
-                                </requireMavenVersion>
-                            </rules>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
             <!-- **** importance for build jar with multiple modules -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-install-plugin</artifactId>
                 <version>3.1.3</version>
-                <executions>
+                <!--<executions>
 
                     <execution>
                         <id>jdbc-custom-service</id>
@@ -180,7 +172,7 @@
                         </configuration>
                     </execution>
 
-                    <!-- in this module doesn't call but jdbc-custom-service use so it have to import -->
+                    &lt;!&ndash; in this module doesn't call but jdbc-custom-service use so it have to import &ndash;&gt;
                     <execution>
                         <id>valiadation-custom-service</id>
                         <phase>initialize</phase>
@@ -196,8 +188,9 @@
                         </configuration>
                     </execution>
 
-                </executions>
+                </executions>-->
             </plugin>
+
         </plugins>
     </build>
 

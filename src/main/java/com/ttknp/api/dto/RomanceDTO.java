@@ -1,12 +1,12 @@
 package com.ttknp.api.dto;
 
 import com.ttknp.api.entity.Romance;
+import com.ttknp.api.exception.ContentNotAllowed;
 import com.ttknp.api.repository.ModelRepository;
-import com.ttknp.jdbccustomservice.jdbc.select.JdbcSelectHelper;
-import com.ttknp.jdbccustomservice.jdbc.update.JdbcInsertUpdateDeleteHelper;
-import com.ttknp.valiadationcustomservice.validation.UtilityStringHelper;
-import com.ttknp.valiadationcustomservice.validation.ValidateHelperService;
-import com.ttknp.webcustomservice.exception.ContentNotAllowed;
+import com.ttknp.api.select.JdbcSelectHelper;
+import com.ttknp.api.update.JdbcInsertUpdateDeleteHelper;
+import com.ttknp.api.validates.UtilityStringHelper;
+import com.ttknp.api.validates.ValidateHelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

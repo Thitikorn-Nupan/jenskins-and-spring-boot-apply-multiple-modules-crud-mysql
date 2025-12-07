@@ -21,10 +21,11 @@ pipeline {
                     }
                 }
 
+
                 stage('Build') {
                     steps {
                         // Builds the Spring Boot application using maven
-                        sh "mvn clean install -DskipTests"
+                        sh "mvn clean install -X -DskipTests"
                     }
                 }
             }

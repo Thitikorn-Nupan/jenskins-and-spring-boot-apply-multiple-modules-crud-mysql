@@ -1,11 +1,11 @@
 package com.ttknp.api.controller;
 
+import com.ttknp.api.annotation.CommonRestAPI;
+import com.ttknp.api.constant.CommonStatus;
+import com.ttknp.api.entity.ResponseObject;
 import com.ttknp.api.entity.Romance;
 import com.ttknp.api.repository.ModelRepository;
-import com.ttknp.responsecustomservice.constant.CommonStatus;
-import com.ttknp.responsecustomservice.entity.ResponseObject;
-import com.ttknp.valiadationcustomservice.validation.ValidateHelperService;
-import com.ttknp.webcustomservice.annotation.CommonRestAPI;
+import com.ttknp.api.validates.ValidateHelperService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
