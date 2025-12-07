@@ -60,7 +60,11 @@ pipeline {
                 }
             }
 
-
+            stage('Before build maven') {
+                steps {
+                    sh "mvn clean compile -DskipTests"
+                }
+            }
 
             stage('Build maven') {
                 steps {
@@ -74,6 +78,7 @@ pipeline {
                     // Returns to the original working directory
                     sh 'pwd'
                     // Builds the Spring Boot application using maven
+
                     sh "mvn clean install -DskipTests"
                     // Returns to the original working directory
                     // Go to target dir
