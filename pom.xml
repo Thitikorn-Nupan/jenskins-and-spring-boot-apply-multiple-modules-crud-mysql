@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.5.8</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>com.ttknp</groupId>
+    <artifactId>api-using-crud-mysql</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>api-using-spring-boot-apply-custom-service-3-crud-mysql</name>
+    <description>api-using-spring-boot-apply-custom-service-3-crud-mysql</description>
+    <url/>
+    <licenses>
+        <license/>
+    </licenses>
+    <developers>
+        <developer/>
+    </developers>
+    <scm>
+        <connection/>
+        <developerConnection/>
+        <tag/>
+        <url/>
+    </scm>
+    <properties>
+        <java.version>17</java.version>
+    </properties>
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.mysql</groupId>
+            <artifactId>mysql-connector-j</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <!--
+              **** importance
+              import custom module/dependency
+              if you do not you can only access the class but not dependency of child module !!!
+              and don't forget import your jar to main project if you do not it can't see jar target !!!
+         -->
+        <dependency>
+            <groupId>com.ttknp</groupId>
+            <artifactId>jdbc-custom-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ttknp</groupId>
+            <artifactId>response-custom-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ttknp</groupId>
+            <artifactId>web-custom-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.ttknp</groupId>
+            <artifactId>valiadation-custom-service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <annotationProcessorPaths>
+                        <path>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </path>
+                    </annotationProcessorPaths>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
+                </configuration>
+            </plugin>
+
+            <!-- **** importance for build jar with multiple modules -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-install-plugin</artifactId>
+                <version>3.1.3</version>
+                <executions>
+
+                    <execution>
+                        <id>jdbc-custom-service</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>com.ttknp</groupId>
+                            <artifactId>jdbc-custom-service</artifactId>
+                            <version>0.0.1-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/libs/jdbc-custom-service-0.0.1-SNAPSHOT.jar</file>
+                        </configuration>
+                    </execution>
+
+                    <execution>
+                        <id>response-custom-service</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>com.ttknp</groupId>
+                            <artifactId>response-custom-service</artifactId>
+                            <version>0.0.1-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/libs/response-custom-service-0.0.1-SNAPSHOT.jar</file>
+                        </configuration>
+                    </execution>
+
+
+                    <execution>
+                        <id>web-custom-service</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>com.ttknp</groupId>
+                            <artifactId>web-custom-service</artifactId>
+                            <version>0.0.1-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/libs/web-custom-service-0.0.1-SNAPSHOT.jar</file>
+                        </configuration>
+                    </execution>
+
+                    <!-- in this module doesn't call but jdbc-custom-service use so it have to import -->
+                    <execution>
+                        <id>valiadation-custom-service</id>
+                        <phase>initialize</phase>
+                        <goals>
+                            <goal>install-file</goal>
+                        </goals>
+                        <configuration>
+                            <groupId>com.ttknp</groupId>
+                            <artifactId>valiadation-custom-service</artifactId>
+                            <version>0.0.1-SNAPSHOT</version>
+                            <packaging>jar</packaging>
+                            <file>${basedir}/libs/valiadation-custom-service-0.0.1-SNAPSHOT.jar</file>
+                        </configuration>
+                    </execution>
+
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

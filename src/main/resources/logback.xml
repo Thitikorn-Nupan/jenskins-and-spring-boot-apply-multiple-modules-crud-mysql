@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="consoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <!-- color good for console but it's not in file -->
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %highlight(%-5level) [%blue(%t)] %green(%logger{45}) %line : %msg%n%throwable</pattern>        </encoder>
+    </appender>
+    <appender name="FILE" class="ch.qos.logback.core.FileAppender">
+        <!--<file> B:/senior-projects-for-sale/maintenance-system-backend-modify/logs</file> -->  <!-- on local -->
+        <file>/root/apps/spring-boot/apps/basic-api-apply-custom-service/logs</file> <!-- on server -->
+        <encoder>
+            <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %-5level [%t] %logger{45} %line : %msg%n%throwable</pattern>
+            <!-- Note if you set the color on linux you see by command as cat <log file> it'll print as color as console  -->
+            <!-- <pattern>%d{dd-MM-yyyy HH:mm:ss.SSS} %highlight(%-5level) [%blue(%t)] %green(%logger{45}) %line : %msg%n%throwable</pattern> -->
+        </encoder>
+        <!-- set size of file -->
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>30MB</MaxFileSize>
+        </triggeringPolicy>
+    </appender>
+    <!-- fix Please use "level" attribute within <logger> or <root> elements instead. -->
+    <root value="INFO,DEBUG" >
+        <!--
+            2 config for logging level by logback
+            1 . application.properties
+            2 . <level value="<Level>,..." />
+            don't forget specify more level if you want
+        -->
+        <appender-ref ref="consoleAppender" />
+        <!--<appender-ref ref="FILE" />-->
+    </root>
+</configuration>
