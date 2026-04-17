@@ -39,7 +39,7 @@ EXPOSE 6789
 # java -jar target/basic-api-in-docker-container.jar
 # this conflict why i have to use ip4 ???
 # you can use env tru ${<env name>}
-ENTRYPOINT ["java","-jar","/app/application.jar", "--mysql.url=jdbc:mysql://192.168.1.103:3307/${ENV_JDBC_DATABASE}","--mysql.username=${ENV_JDBC_USERNAME}","--mysql.password=${ENV_JDBC_PASSWORD}","--mysql.driver=com.mysql.cj.jdbc.Driver"]
+ENTRYPOINT ["java","-jar","/app/application.jar", "--mysql.url=jdbc:mysql://192.168.1.38:3307/${ENV_JDBC_DATABASE}","--mysql.username=${ENV_JDBC_USERNAME}","--mysql.password=${ENV_JDBC_PASSWORD}","--mysql.driver=com.mysql.cj.jdbc.Driver"]
 # ENTRYPOINT ["java","-jar","/app/application.jar", "--spring.datasource.url=jdbc:mysql://192.168.1.103:3307/to_do_apps_docker","--spring.datasource.username=${ENV_JDBC_USERNAME}","--spring.datasource.password=${ENV_JDBC_PASSWORD}","--spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver"]
 
 

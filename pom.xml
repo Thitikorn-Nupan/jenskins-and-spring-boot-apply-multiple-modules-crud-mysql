@@ -61,35 +61,6 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
         </dependency>
-        <!--
-              **** importance
-              import custom module/dependency
-              if you do not you can only access the class but not dependency of child module !!!
-              and don't forget import your jar to main project if you do not it can't see jar target !!!
-         -->
-        <!--<dependency>
-            <groupId>com.ttknp</groupId>
-            <artifactId>jdbc-custom-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ttknp</groupId>
-            <artifactId>response-custom-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ttknp</groupId>
-            <artifactId>web-custom-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.ttknp</groupId>
-            <artifactId>valiadation-custom-service</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
-        </dependency>-->
     </dependencies>
 
     <build>
