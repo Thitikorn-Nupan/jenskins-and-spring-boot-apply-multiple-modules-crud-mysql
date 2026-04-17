@@ -4,7 +4,7 @@
 #
 #
 ### Use official base image of Java Runtime (JDK version that you use)
-FROM openjdk:24-ea-17-jdk-slim
+FROM openjdk:24-ea-jdk
 LABEL authors="ttknp"
 
 ### (Set folder on container) specific space to persist some data in your container.
